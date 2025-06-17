@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            padding-right: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            margin: auto;
+        }
+        h2 {
+            color: #F48B3C;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .result {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container" style="margin-bottom: 70px;"></div> <!-- Header will be loaded here -->
+
+    <div class="container">
+        <h2>Percentage Calculator</h2>
+        <input type="number" id="value" placeholder="Enter value" oninput="calculatePercentage()" />
+        <input type="number" id="percentage" placeholder="Enter percentage (%)" oninput="calculatePercentage()" />
+        <div class="result" id="result"></div>
+    </div>
+    
+    <script>
+        function calculatePercentage() {
+            let value = parseFloat(document.getElementById('value').value);
+            let percentage = parseFloat(document.getElementById('percentage').value);
+            let result = '';
+            
+            if (!isNaN(value) && !isNaN(percentage)) {
+                result = (value * percentage) / 100;
+                document.getElementById('result').innerText = `Result: ${result}`;
+            } else {
+                document.getElementById('result').innerText = '';
+            }
+        }
+    </script>
+
+
+
+<script>
+    fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("header-container").innerHTML = data;
+        let script = document.createElement("script");
+        script.src = "script.js";
+        document.body.appendChild(script);
+    });
+</script>
+</body>
+</html>

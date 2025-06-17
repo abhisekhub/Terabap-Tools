@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="icon" type="image/x-icon" href="/tool-images/favicon.png">
+    
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Notepad</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+        }
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            resize: none;
+        }
+        button {
+            background: #f48b3c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #d9782f;
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container" style="margin-bottom: 70px;"></div> <!-- Header will be loaded here -->
+    <div class="container">
+        <h2>Online Notepad</h2>
+        <br>
+        <textarea id="notepad" placeholder="Start typing..."></textarea>
+        <br>
+        <button onclick="saveNote()">Save Note</button>
+        <button onclick="downloadNote()">Download as Text</button>
+        <button onclick="clearNote()">Clear</button>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("notepad").value = localStorage.getItem("savedNote") || "";
+        });
+
+        function saveNote() {
+            let noteContent = document.getElementById("notepad").value;
+            localStorage.setItem("savedNote", noteContent);
+            alert("Note saved!");
+        }
+        
+        function downloadNote() {
+            let noteContent = document.getElementById("notepad").value;
+            let blob = new Blob([noteContent], { type: "text/plain" });
+            let link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "note.txt";
+            link.click();
+        }
+        
+        function clearNote() {
+            document.getElementById("notepad").value = "";
+            localStorage.removeItem("savedNote");
+        }
+    </script>
+    <script>
+        fetch("header.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("header-container").innerHTML = data;
+            let script = document.createElement("script");
+            script.src = "script.js";
+            document.body.appendChild(script);
+        });
+    </script>
+</body>
+</html>

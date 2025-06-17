@@ -1,0 +1,12 @@
+<div id="header-container" style="margin-bottom: 70px;"></div> <!-- Header will be loaded here -->
+
+<script>
+        fetch("header.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("header-container").innerHTML = data;
+            let script = document.createElement("script");
+            script.src = "script.js";
+            document.body.appendChild(script);
+        });
+    </script>

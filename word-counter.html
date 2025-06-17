@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="icon" type="image/x-icon" href="/tool-images/favicon.png">
+    
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wordCounter</title>
+</head>
+<body>
+    
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    textarea {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 10px;
+    }
+    #wordCount {
+        background-color: #f48b3c;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+</style>
+<div id="header-container" style="margin-bottom: 70px;"></div> <!-- Header will be loaded here -->
+
+<p>Type or paste your text below:</p>
+<textarea id="text" oninput="countWords()"></textarea>
+<p>Number of words: <span id="wordCount">0</span></p>
+
+<script>
+    function countWords() {
+        var text = document.getElementById('text').value;
+        var wordCount = text.trim().split(/\s+/).length;
+        document.getElementById('wordCount').textContent = wordCount;
+    }
+</script>
+<script>
+    fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("header-container").innerHTML = data;
+        let script = document.createElement("script");
+        script.src = "script.js";
+        document.body.appendChild(script);
+    });
+</script>
+</body>
+</html>

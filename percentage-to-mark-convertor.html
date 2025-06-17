@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="icon" type="image/x-icon" href="/tool-images/favicon.png">
+    
+    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Percentage to Marks Calculator</title>
+<style>
+#percentageInput{
+width: 50%;
+}
+#totalMarksInput{
+width: 50%;
+}
+button{
+width: 20%;
+height: 30px;
+background-color: #f48b3c;
+border: none;
+color: white;
+}
+</style>
+</head>
+<body>
+  <div id="header-container" style="margin-bottom: 70px;"></div> <!-- Header will be loaded here -->
+
+<center>
+<h2>Percentage to Marks Calculator</h2>
+<form id="percentageToMarksForm">
+  <label for="percentageInput">Enter Percentage:</label>
+  <br>
+  <br>
+  <input type="number" id="percentageInput" name="percentageInput" min="0" max="100" step="0.01" required><br><br>
+  <label for="totalMarksInput">Enter Total Marks:</label>
+  <br>
+  <br>
+  <input type="number" id="totalMarksInput" name="totalMarksInput" min="1" required><br><br>
+  <button type="button" onclick="calculateMarks()">Calculate Marks</button>
+</form>
+<p id="result"></p>
+</center>
+<script>
+function calculateMarks() {
+  var percentage = document.getElementById("percentageInput").value;
+  var totalMarks = document.getElementById("totalMarksInput").value;
+  
+  var marks = (percentage * totalMarks) / 100;
+  
+  document.getElementById("result").innerHTML = "Your marks would be approximately " + marks.toFixed(2) + " out of " + totalMarks + ".";
+}
+</script>
+<script>
+  fetch("header.html")
+  .then(response => response.text())
+  .then(data => {
+      document.getElementById("header-container").innerHTML = data;
+      let script = document.createElement("script");
+      script.src = "script.js";
+      document.body.appendChild(script);
+  });
+</script>
+</body>
+</html>

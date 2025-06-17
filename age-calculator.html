@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="icon" type="image/x-icon" href="/tool-images/favicon.png">
+    
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        select {
+            padding: 8px;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #f48b3c;
+            color: white;
+            border: none;
+            border-radius: 10px;
+        }
+        #result {
+            margin-top: 10px;
+            font-size: 18px;
+            display: none;
+            background-color: green;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .date-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="header-container" style="margin-bottom: 70px;"></div> <!-- Header will be loaded here -->
+
+    <h1>Age Calculator Tool</h1>
+    <label>Enter your birthdate:</label>
+    <div class="date-container">
+        <select id="year"></select>
+        <select id="month"></select>
+        <select id="day"></select>
+    </div>
+    <button onclick="calculateAge()">Calculate Age</button>
+    <p id="result"></p>
+
+    <script>
+        // Populate Year Dropdown
+        const yearSelect = document.getElementById("year");
+        const monthSelect = document.getElementById("month");
+        const daySelect = document.getElementById("day");
+
+        const currentYear = new Date().getFullYear();
+        for (let i = currentYear; i >= 1900; i--) {
+            let option = document.createElement("option");
+            option.value = i;
+            option.text = i;
+            yearSelect.appendChild(option);
+        }
+
+        // Populate Month Dropdown
+        for (let i = 1; i <= 12; i++) {
+            let option = document.createElement("option");
+            option.value = i;
+            option.text = i;
+            monthSelect.appendChild(option);
+        }
+
+        // Populate Days Dropdown
+        function updateDays() {
+            daySelect.innerHTML = "";
+            let selectedYear = parseInt(yearSelect.value);
+            let selectedMonth = parseInt(monthSelect.value);
+            let daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
+            for (let i = 1; i <= daysInMonth; i++) {
+                let option = document.createElement("option");
+                option.value = i;
+                option.text = i;
+                daySelect.appendChild(option);
+            }
+        }
+        monthSelect.addEventListener("change", updateDays);
+        yearSelect.addEventListener("change", updateDays);
+        updateDays();
+
+        function calculateAge() {
+            let birthYear = parseInt(yearSelect.value);
+            let birthMonth = parseInt(monthSelect.value) - 1;
+            let birthDay = parseInt(daySelect.value);
+            let birthdate = new Date(birthYear, birthMonth, birthDay);
+            let today = new Date();
+            
+            let years = today.getFullYear() - birthdate.getFullYear();
+            let months = today.getMonth() - birthdate.getMonth();
+            let days = today.getDate() - birthdate.getDate();
+            
+            if (months < 0 || (months === 0 && days < 0)) {
+                years--;
+                months += 12;
+            }
+            if (days < 0) {
+                let prevMonthDays = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+                days += prevMonthDays;
+                months--;
+            }
+            
+            let result = `Your age is: ${years} year(s), ${months} month(s), ${days} day(s)`;
+            document.getElementById('result').textContent = result;
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+    <script>
+        fetch("header.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("header-container").innerHTML = data;
+            let script = document.createElement("script");
+            script.src = "script.js";
+            document.body.appendChild(script);
+        });
+    </script>
+</body>
+</html>

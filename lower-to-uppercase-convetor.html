@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="icon" type="image/x-icon" href="/tool-images/favicon.png">
+    
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lowercase to Uppercase Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background: #f48b3c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #d9782f;
+        }
+        h3{
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container" style="margin-bottom: 70px;"></div> <!-- Header will be loaded here -->
+    <div class="container">
+        <h2>Lowercase to Uppercase Converter</h2>
+        <br>
+        <textarea id="inputText" placeholder="Enter text..."></textarea>
+        <button onclick="convertToUpper()">Convert to Uppercase</button>
+        <h3>Output:</h3>
+        <textarea id="outputText" readonly></textarea>
+    </div>
+    
+    <script>
+        function convertToUpper() {
+            let inputText = document.getElementById("inputText").value;
+            document.getElementById("outputText").value = inputText.toUpperCase();
+        }
+    </script>
+    <script>
+        fetch("header.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("header-container").innerHTML = data;
+            let script = document.createElement("script");
+            script.src = "script.js";
+            document.body.appendChild(script);
+        });
+    </script>
+</body>
+</html>

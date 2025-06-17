@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/x-icon" href="/tool-images/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terabap</title>
+
+    <!-- Font Awesome Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        #logolink{
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #f48b3c;
+            color: white;
+            padding: 15px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: "PT Serif", serif;
+            font-weight: 700;
+            font-style: italic;
+            font-size: 20px;
+        }
+
+        /* Navigation */
+        .nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav ul li {
+            display: inline;
+        }
+
+        .nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .nav ul li a:hover {
+            color: yellow;
+        }
+
+        /* Social Media Icons */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: yellow;
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .menu-toggle {
+                display: block;
+                color: white;
+            }
+
+            .nav {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: #f48b3c;
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                padding: 15px 0;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .nav ul {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .nav ul li {
+                width: 100%;
+            }
+
+            .nav ul li a {
+                display: block;
+                padding: 10px;
+                font-size: 20px;
+            }
+
+            .nav.active {
+                display: flex;
+            }
+
+            .social-icons {
+                display: flex;
+            }
+
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                display: none;
+                z-index: 999;
+            }
+
+            .overlay.active {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo"><a href="https://terabap.com" id="logolink">Terabap.com</a></div>
+
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <nav class="nav">
+            <ul>
+                <li><a href="https://terabap.com">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="disclaimer.html">Disclaimer</a></li>
+                <li><a href="terms.html">Terms</a></li>
+            </ul>
+        </nav>
+
+        <div class="social-icons">
+            <a href="#" class="fab fa-youtube" title="YouTube"></a>
+            <a href="#" class="fab fa-instagram" title="Instagram"></a>
+            <a href="#" class="fab fa-tiktok" title="TikTok"></a>
+            <a href="#" class="fab fa-facebook-f" title="Facebook"></a>
+            <a href="#" class="fab fa-twitter" title="Twitter"></a>
+            <a href="#" class="fab fa-linkedin" title="LinkedIn"></a>
+        </div>
+    </header>
+
+    <div class="overlay" onclick="toggleMenu()"></div>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav').classList.toggle('active');
+            document.querySelector('.overlay').classList.toggle('active');
+        }
+    </script>
+
+</body>
+
+</html>

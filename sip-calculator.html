@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="icon" type="image/x-icon" href="/tool-images/favicon.png">
+    
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIP Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            text-align: center;
+            padding: 20px;
+        }
+        .calculator {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        button {
+            background-color: #F48B3C;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #e07a32;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container" style="margin-bottom: 70px;"></div> <!-- Header will be loaded here -->
+    <div class="calculator">
+        <h2>SIP Calculator</h2>
+        <input type="number" id="monthlyInvestment" placeholder="Monthly Investment" />
+        <input type="number" id="returnRate" placeholder="Expected Return Rate (%)" />
+        <input type="number" id="duration" placeholder="Duration (Years)" />
+        <button onclick="calculateSIP()">Calculate</button>
+        <h3 id="result"></h3>
+    </div>
+    <script>
+        function calculateSIP() {
+            const P = parseFloat(document.getElementById('monthlyInvestment').value);
+            const r = parseFloat(document.getElementById('returnRate').value) / 100 / 12;
+            const n = parseInt(document.getElementById('duration').value) * 12;
+            
+            if (isNaN(P) || isNaN(r) || isNaN(n) || P <= 0 || r <= 0 || n <= 0) {
+                alert("Please enter valid values.");
+                return;
+            }
+            
+            const maturityAmount = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+            document.getElementById('result').innerText = `Maturity Amount: ₹${maturityAmount.toFixed(2)}`;
+        }
+    </script>
+    <script>
+        fetch("header.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("header-container").innerHTML = data;
+            let script = document.createElement("script");
+            script.src = "script.js";
+            document.body.appendChild(script);
+        });
+    </script>
+</body>
+</html>

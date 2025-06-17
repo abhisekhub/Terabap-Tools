@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position Sizing Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .calculator {
+            background: white;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        .calculator label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        .calculator input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .output {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #f48b3c;
+        }
+        .reset-btn {
+            margin-top: 15px;
+            padding: 10px;
+            width: 100%;
+            background-color: #f48b3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .reset-btn:hover {
+            background-color: #d9772e;
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container" style="margin-bottom: 70px;"></div> <!-- Header will be loaded here -->
+    <div class="calculator">
+        <label>Total Capital:</label>
+        <input type="number" id="totalCapital" placeholder="Enter total capital">
+        
+        <label>Risk Per Trade (%):</label>
+        <input type="number" id="riskPercentage" placeholder="Enter risk percentage">
+        
+        <label>Entry Price:</label>
+        <input type="number" id="entryPrice" placeholder="Enter entry price">
+        
+        <label>Stop Loss Price:</label>
+        <input type="number" id="stopLossPrice" placeholder="Enter stop loss price">
+        
+        <div class="output">
+            <p>Risk Amount: <span id="riskAmount">0</span></p>
+            <p>Kittas to Buy: <span id="kittasToBuy">0</span></p>
+        </div>
+        
+        <button class="reset-btn" onclick="resetCalculator()">Reset</button>
+    </div>
+
+    <script>
+        function calculate() {
+            let totalCapital = parseFloat(document.getElementById("totalCapital").value) || 0;
+            let riskPercentage = parseFloat(document.getElementById("riskPercentage").value) || 0;
+            let entryPrice = parseFloat(document.getElementById("entryPrice").value) || 0;
+            let stopLossPrice = parseFloat(document.getElementById("stopLossPrice").value) || 0;
+
+            if (totalCapital > 0 && riskPercentage > 0 && entryPrice > stopLossPrice && stopLossPrice > 0) {
+                let riskAmount = (totalCapital * riskPercentage) / 100;
+                let riskPerShare = entryPrice - stopLossPrice;
+                let kittasToBuy = Math.floor(riskAmount / riskPerShare);
+                
+                document.getElementById("riskAmount").textContent = riskAmount.toFixed(2);
+                document.getElementById("kittasToBuy").textContent = kittasToBuy;
+            } else {
+                document.getElementById("riskAmount").textContent = "0";
+                document.getElementById("kittasToBuy").textContent = "0";
+            }
+        }
+
+        function resetCalculator() {
+            document.getElementById("totalCapital").value = "";
+            document.getElementById("riskPercentage").value = "";
+            document.getElementById("entryPrice").value = "";
+            document.getElementById("stopLossPrice").value = "";
+            document.getElementById("riskAmount").textContent = "0";
+            document.getElementById("kittasToBuy").textContent = "0";
+        }
+
+        document.querySelectorAll("input").forEach(input => {
+            input.addEventListener("input", calculate);
+        });
+    </script>
+    <script>
+        fetch("header.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("header-container").innerHTML = data;
+            let script = document.createElement("script");
+            script.src = "script.js";
+            document.body.appendChild(script);
+        });
+    </script>
+</body>
+</html>

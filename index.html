@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <link rel="icon" type="image/x-icon" href="/tool-images/favicon.png">
+    
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terabap Tools - Online Utility Tools</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #eef2f7;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            margin-top: 0px;
+            height: calc(100vh - 80px);
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .right-sidebar{
+                display: none;
+            }
+        }
+
+        .tool {
+            background: #ffffff;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .tool h3 {
+            margin: 10px 0;
+            font-size: 18px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            font-size: 16px;
+            color: white;
+            background-color: #f48b3c;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #d9772d;
+        }
+
+        .right-sidebar {
+            margin-top: 35px;
+            margin-right: 30px;
+            width: 25%;
+            background-color: #ffffff;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            height: 100%;
+            margin-left: 20px;
+            display: none;
+        }
+
+        .right-sidebar h3 {
+            text-align: center;
+            color: #f48b3c;
+        }
+
+        .ad-section {
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header-container" style="margin-bottom: 70px;"></div> <!-- Header will be loaded here --></div>
+    <div class="container">
+        <div class="main-content">
+            <div class="grid">
+                <a href="Percentage-calculator.html">
+                    <div class="tool">
+                        <img src="tool-images/analytics.png" alt="Position Sizng Calculator">
+                        <h3> Percentage Calculator </h3>
+                    </div>
+                </a>
+                <a href="position-sizing-calclaor.html">
+                    <div class="tool">
+                        <img src="tool-images/budget.png" alt="Position Sizng Calculator">
+                        <h3> Position Sizng Calculator </h3>
+                    </div>
+                </a>
+                <a href="bmi-calculator.html">
+                    <div class="tool">
+                        <img src="tool-images/bmi.png" alt="BMI Calculator">
+                        <h3>BMI Calculator</h3>
+                    </div>
+                </a>
+                <a href="interest-rate-cakculator.html">
+                    <div class="tool">
+                        <img src="tool-images/interest-rate.png" alt="BMI Calculator">
+                        <h3>Interest Rate Calculator</h3>
+                    </div>
+                </a>
+                <a href="age-calculator.html">
+                    <div class="tool">
+                        <img src="tool-images/calculator.png" alt="Calculator">
+                        <h3>Age Calculator</h3>
+                    </div>
+                </a>
+                <a href="cpc-checker.html">
+                    <div class="tool">
+                        <img src="tool-images/cpc.png" alt="CPC Checker">
+                        <h3>CPC Checker</h3>
+                    </div>
+                </a>
+                <a href="favicon-generator.html">
+                    <div class="tool">
+                        <img src="tool-images/ico.png" alt="ICO Generator">
+                        <h3>Fav Icon Generator</h3>
+                    </div>
+                </a>
+                <a href="image-compressor.html">
+                    <div class="tool">
+                        <img src="tool-images/image.png" alt="Image Compressor">
+                        <h3>Image Compressor</h3>
+                    </div>
+                </a>
+                <a href="qr-code-generator.html">
+                    <div class="tool">
+                        <img src="tool-images/qr-code.png" alt="QR Code Generator">
+                        <h3>QR Code Generator</h3>
+                    </div>
+                </a>
+                <a href="image-resizer.html">
+                    <div class="tool">
+                        <img src="tool-images/resize.png" alt="Image Resizer">
+                        <h3>Image Resizer</h3>
+                    </div>
+                </a>
+                <a href="keyword-density-checker.html">
+                    <div class="tool">
+                        <img src="tool-images/keyword.png" alt="Keyword Density Checker">
+                        <h3>Keyword Density Checker</h3>
+                    </div>
+                </a>
+                <a href="lower-to-uppercase-convetor.html">
+                    <div class="tool">
+                        <img src="tool-images/lower-case.png" alt="Lower Case To Upper Case Generatorr">
+                        <h3>Lower Case To Upper Case Generator</h3>
+                    </div>
+                </a>
+                <a href="online-notepad.html">
+                    <div class="tool">
+                        <img src="tool-images/text-editor.png" alt="Online Notepad">
+                        <h3>Online Notepad</h3>
+                    </div>
+                </a>
+                <a href="password-generator.html">
+                    <div class="tool">
+                        <img src="tool-images/reset-password.png" alt="Password Generator">
+                        <h3>Password Generator</h3>
+                    </div>
+                </a>
+                <a href="percentage-to-mark-convertor.html">
+                    <div class="tool">
+                        <img src="tool-images/percentage.png" alt="Percentage To Mark Convertor">
+                        <h3>Percentage To Mark Convertor</h3>
+                    </div>
+                </a>
+                <a href="uppercase-to-lowercase-convertor.html">
+                    <div class="tool">
+                        <img src="tool-images/upper-case.png" alt="Upper Case TO Lower Case Convertor">
+                        <h3>Upper Case TO Lower Case Convertor</h3>
+                    </div>
+                </a>
+                <a href="what-is-my-ip.html">
+                    <div class="tool">
+                        <img src="tool-images/ip-adress.png" alt="What is My IP">
+                        <h3>What is My IP</h3>
+                    </div>
+                </a>
+                <a href="word-counter.html">
+                    <div class="tool">
+                        <img src="tool-images/word.png" alt="Word Counter">
+                        <h3>Word Counter</h3>
+                    </div>
+                </a>
+                <a href="custom-robot-generator.html">
+                    <div class="tool">
+                        <img src="tool-images/robot.png" alt="Custom Robots.txt Generator">
+                        <h3>Custom Robots.txt Generator</h3>
+                    </div>
+                </a>
+            </a>
+            <a href="currency-convertor.html">
+                <div class="tool">
+                    <img src="tool-images/currency.png" alt="Currency Convertor">
+                    <h3>Currency Convertor</h3>
+                </div>
+            </a>
+        </a>
+        <a href="sip-calculator.html">
+            <div class="tool">
+                <img src="tool-images/phone.png" alt="SIP Calculator">
+                <h3>SIP Calculator</h3>
+            </div>
+        </a>
+    </a>
+    <a href="image-convertor.html">
+        <div class="tool">
+            <img src="tool-images/image.png" alt="Image Converto">
+            <h3>Image Convertor</h3>
+        </div>
+    </a>
+            </div>
+        </div>
+        <div class="right-sidebar">
+            <h3>Advertisement</h3>
+            <div class="ad-section">
+                Your Ad Here
+            </div>
+        </div>
+    </div>
+
+    <script>
+        fetch("header.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header-container").innerHTML = data;
+                let script = document.createElement("script");
+                script.src = "script.js";
+                document.body.appendChild(script);
+            });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="icon" type="image/x-icon" href="/tool-images/favicon.png">
+    
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        input, select, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #F48B3C;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #db935b;
+        }
+        #downloadLink{
+            background-color: #F48B3C;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #downloadLink:hover {
+            background-color: #db935b;
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container" style="margin-bottom: 70px;"></div> <!-- Header will be loaded here -->
+    <div class="container">
+        <h2>Image Converter</h2>
+        <input type="file" id="imageInput" accept="image/*">
+        <br>
+        <label for="format">Convert to:</label>
+        <select id="format">
+            <option value="png">PNG</option>
+            <option value="jpg">JPG</option>
+            <option value="webp">WEBP</option>
+            <option value="bmp">BMP</option>
+            <option value="gif">GIF</option>
+        </select>
+        <br>
+        <button onclick="convertImage()">Convert</button>
+        <br>
+        <a id="downloadLink" style="display:none; margin-top:10px;" download>Download Converted Image</a>
+    </div>
+    
+    <script>
+        function convertImage() {
+            const fileInput = document.getElementById('imageInput').files[0];
+            if (!fileInput) {
+                alert('Please select an image');
+                return;
+            }
+            
+            const format = document.getElementById('format').value;
+            const reader = new FileReader();
+            reader.readAsDataURL(fileInput);
+            
+            reader.onload = function (event) {
+                const img = new Image();
+                img.src = event.target.result;
+                
+                img.onload = function () {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    
+                    const convertedImage = canvas.toDataURL(`image/${format}`);
+                    
+                    const downloadLink = document.getElementById('downloadLink');
+                    downloadLink.href = convertedImage;
+                    downloadLink.download = `converted-image.${format}`;
+                    downloadLink.innerText = 'Download Converted Image';
+                    downloadLink.style.display = 'block';
+                };
+            };
+        }
+    </script>
+    <script>
+        fetch("header.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("header-container").innerHTML = data;
+            let script = document.createElement("script");
+            script.src = "script.js";
+            document.body.appendChild(script);
+        });
+    </script>
+</body>
+</html>

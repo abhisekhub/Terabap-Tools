@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="icon" type="image/x-icon" href="/tool-images/favicon.png">
+    
+    
+<style>
+#weight{
+width: 30%;
+height: 20px;
+margin-top: 5px;
+margin-bottom: 7px;
+}
+#height{
+width: 30%;
+height: 20px;
+margin-top: 5px;
+margin-bottom: 7px;
+}
+button{
+        width: 200px;
+        height: 30px;
+        background-color: #f48b3c;
+        border: none;
+        border-radius: 4px;
+        margin-top: 5px;
+        }
+
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header-container" style="margin-bottom: 70px;"></div> <!-- Header will be loaded here -->
+
+<center>
+    <header>
+        <h1>BMI Calculator</h1>
+    </header>
+
+    <div class="container">
+        <label>Weight (kg):</label>
+        <br>
+        <input type="number" id="weight" placeholder="Enter weight">
+        <br>
+        <label>Height (cm):</label><br>
+        <input type="number" id="height" placeholder="Enter height">
+        <br>
+        <button onclick="calculateBMI()">Calculate</button>
+        <p>Your BMI: <span id="bmi"></span></p>
+    </div>
+</center>
+    <script>
+        function calculateBMI() {
+            let weight = document.getElementById("weight").value;
+            let height = document.getElementById("height").value / 100; 
+            let bmi = (weight / (height * height)).toFixed(2);
+            document.getElementById("bmi").innerText = bmi;
+        }
+    </script>
+    <script>
+        fetch("header.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("header-container").innerHTML = data;
+            let script = document.createElement("script");
+            script.src = "script.js";
+            document.body.appendChild(script);
+        });
+    </script>
+</body>
+</html>
